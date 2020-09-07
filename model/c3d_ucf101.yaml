@@ -1,0 +1,52 @@
+[MODEL]
+
+name: "C3D"
+format: "jpg"
+num_classes: 101
+seg_num: 1
+seglen: 16
+image_mean: [0.485, 0.456, 0.406]
+image_std: [0.229, 0.224, 0.225]
+num_layers: 50
+topk: 5
+classind: "./work/ucf101_splite/classInd.txt"
+
+[TRAIN]
+
+epoch: 60
+short_size: 128#128
+target_size: 112#224
+num_reader_threads: 12
+buf_size: 1024
+batch_size: 120
+use_gpu: True
+num_gpus: 1
+filelist: "./work/ucf101_splite/trainlist01.txt"#划分的训练数据集
+learning_rate: 0.00002#手动调整学习率
+learning_rate_decay: 0.1
+l2_weight_decay: 1e-3
+momentum: 0.9
+video_path: "./work/ucf101"#保存取帧后的图像数据集
+total_videos: 9537
+
+
+[VALID]
+
+short_size:  128#128
+target_size: 112#224
+num_reader_threads: 12
+buf_size: 1024
+batch_size: 96
+filelist: "./work/ucf101_splite/testlist01.txt"#划分的验证数据集
+video_path: "./work/ucf101"#保存取帧后的图像数据集
+
+[TEST]
+
+seg_num: 1
+short_size: 128#128
+target_size: 112#224
+num_reader_threads: 6
+buf_size: 1024
+batch_size: 1
+filelist: "./work/ucf101_splite/testlist01.txt"#划分的测试数据集
+video_path: "./work/ucf101"#保存取帧后的图像数据集

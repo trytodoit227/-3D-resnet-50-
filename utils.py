@@ -17,7 +17,7 @@ class AttrDict(dict):
     def __getattr__(self, key):#对没有定义的属性名和实例,会用属性名作为字符串调用这个方法
         return self[key]
 
-    def __setattr__(self, key, value):#没看懂这是什么鬼
+    def __setattr__(self, key, value):
         if key in self.__dict__:
             self.__dict__[key] = value
         else:
